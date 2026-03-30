@@ -48,22 +48,44 @@ ReflectAI는 **신경망(Neural Network)**과 **논리적 추론(Logical Reasoni
 ## 설치
 
 ```bash
-# 기본 설치 (PyTorch + 백트래킹 솔버)
-pip install reflectai
+# 저장소 클론
+git clone https://github.com/wjddusrb03/reflectai.git
+cd reflectai
+
+# 기본 설치
+pip install -e .
 
 # Z3 SMT 솔버 포함 (복잡한 제약 조건에 권장)
-pip install reflectai[z3]
+pip install -e ".[z3]"
 
-# 모든 선택적 백엔드 포함
-pip install reflectai[all]
+# 웹 UI 포함 (Gradio)
+pip install -e ".[web]"
 
-# 개발용
-pip install reflectai[dev]
+# 모든 선택적 백엔드 + 웹 UI 포함
+pip install -e ".[all]"
+
+# 개발용 (테스트 포함)
+pip install -e ".[dev]"
 ```
 
 ## 빠른 시작
 
-### 데모: 반성 기반 스도쿠 풀기
+### 웹 UI (추천!)
+
+```bash
+pip install -e ".[web]"    # Gradio 설치
+reflectai web              # http://localhost:7860 에서 열기
+```
+
+![Web UI](https://img.shields.io/badge/Web_UI-Gradio-orange.svg)
+
+웹 UI에서 제공하는 기능:
+- 색상 코딩된 스도쿠 인터랙티브 풀이
+- 숫자 덧셈 태스크 시각화
+- 벤치마크 실행기
+- 단계별 파이프라인 설명
+
+### CLI 데모
 
 ```bash
 # 인터랙티브 데모 실행

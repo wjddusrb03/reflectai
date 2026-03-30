@@ -48,22 +48,44 @@ Predictions    Error Flags (binary: 1=suspect, 0=trusted)
 ## Installation
 
 ```bash
-# Core (PyTorch + backtracking solver)
-pip install reflectai
+# Clone the repository
+git clone https://github.com/wjddusrb03/reflectai.git
+cd reflectai
+
+# Install (editable mode)
+pip install -e .
 
 # With Z3 SMT solver (recommended for complex constraints)
-pip install reflectai[z3]
+pip install -e ".[z3]"
 
-# With all optional backends
-pip install reflectai[all]
+# With Web UI (Gradio)
+pip install -e ".[web]"
 
-# Development
-pip install reflectai[dev]
+# With all optional backends + Web UI
+pip install -e ".[all]"
+
+# Development (with tests)
+pip install -e ".[dev]"
 ```
 
 ## Quick Start
 
-### Demo: Solve Sudoku with Reflection
+### Web UI (Recommended!)
+
+```bash
+pip install -e ".[web]"    # Install Gradio
+reflectai web              # Open http://localhost:7860
+```
+
+![Web UI](https://img.shields.io/badge/Web_UI-Gradio-orange.svg)
+
+The web UI provides:
+- Interactive Sudoku solver with color-coded grids
+- Digit addition task visualization
+- Benchmark runner
+- Step-by-step pipeline explanation
+
+### CLI Demo
 
 ```bash
 # Run interactive demo
@@ -177,6 +199,10 @@ L_total = L_supervised + lambda_c * L_consistency + lambda_r * L_reflection_size
 ## CLI Commands
 
 ```bash
+# Launch web UI (recommended)
+reflectai web
+reflectai web --port 8080 --share    # Custom port + public link
+
 # Show system info and available backends
 reflectai info
 
@@ -201,6 +227,7 @@ reflectai/
 │   ├── trainer.py            # Three-loss training loop
 │   ├── pipeline.py           # End-to-end pipeline
 │   ├── cli.py                # CLI interface
+│   ├── web.py                # Gradio web UI
 │   └── tasks/
 │       ├── sudoku.py         # Sudoku puzzle utilities
 │       ├── mnist_add.py      # MNIST digit addition

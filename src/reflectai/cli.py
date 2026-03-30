@@ -295,6 +295,24 @@ def info():
             click.echo(f"  {k}: {v}")
 
 
+@main.command()
+@click.option("--port", "-p", default=7860, type=int, help="Server port")
+@click.option("--share", is_flag=True, help="Create a public Gradio link")
+def web(port: int, share: bool):
+    """Launch the interactive web UI."""
+    try:
+        from .web import launch_app
+    except ImportError:
+        click.echo("Web UI requires gradio. Install with:")
+        click.echo("  pip install gradio")
+        raise SystemExit(1)
+
+    click.echo(f"Starting ReflectAI Web UI on port {port}...")
+    if share:
+        click.echo("Creating public share link...")
+    launch_app(port=port, share=share)
+
+
 def _print_grid(console, values: np.ndarray, title: str):
     """Print a 9x9 Sudoku grid."""
     from rich.table import Table
