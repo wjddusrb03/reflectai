@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Secrets & credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.yaml
+secrets.json
+
+# Database
+*.sqlite
+*.db
+
+# Model files (too large for git)
+*.pkl
+*.bin
+*.h5
+*.pt
+*.onnx
+*.pth
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

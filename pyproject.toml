@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "reflectai"
+version = "1.0.0"
+description = "Neuro-symbolic reasoning with abductive reflection — first open-source implementation of ABL-Refl (AAAI 2026 Outstanding Paper)"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "wjddusrb03" }]
+keywords = [
+    "neuro-symbolic", "abductive-learning", "reflection",
+    "reasoning", "sudoku", "constraint-solving", "pytorch",
+    "z3", "aaai", "logic", "puzzle-solving",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "torch>=2.0",
+    "numpy>=1.24",
+    "click>=8.0",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+z3 = ["z3-solver>=4.12"]
+sat = ["python-sat>=1.8"]
+vision = ["torchvision>=0.15", "Pillow>=10.0"]
+all = ["z3-solver>=4.12", "python-sat>=1.8", "torchvision>=0.15", "Pillow>=10.0"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "z3-solver>=4.12",
+]
+
+[project.scripts]
+reflectai = "reflectai.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/wjddusrb03/reflectai"
+Repository = "https://github.com/wjddusrb03/reflectai"
+Issues = "https://github.com/wjddusrb03/reflectai/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/reflectai"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
